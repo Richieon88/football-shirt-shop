@@ -1,12 +1,13 @@
 .navbar-brand {
-    font-weight: bold;
+    font-size: 1.5rem;
 }
 
-.navbar-nav .nav-link {
-    font-size: 1.1rem;
-    margin-right: 1rem;
+.dropdown-menu {
+    font-size: 1rem;
 }
 
-.navbar-nav .nav-link:hover {
-    color: #ddd;
+@media (max-width: 576px) {
+    .navbar-nav .nav-link {
+        font-size: 0.875rem;
+    }
 }
