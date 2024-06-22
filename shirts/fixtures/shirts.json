@@ -1,0 +1,30 @@
+[
+    {
+        "model": "shirts.shirt",
+        "pk": 1,
+        "fields": {
+            "sku": "ARS202324H",
+            "name": "Arsenal Home Shirt 2023/2024",
+            "description": "Official Arsenal home shirt for the 2023/2024 season.",
+            "team": "ARS",
+            "season": "2023/2024",
+            "type": "home",
+            "price": 79.99,
+            "image": "shirts/arsenal_home_2023.jpg"
+        }
+    },
+    {
+        "model": "shirts.shirt",
+        "pk": 2,
+        "fields": {
+            "sku": "CHE202324A",
+            "name": "Chelsea Away Shirt 2023/2024",
+            "description": "Official Chelsea away shirt for the 2023/2024 season.",
+            "team": "CHE",
+            "season": "2023/2024",
+            "type": "away",
+            "price": 79.99,
+            "image": "shirts/chelsea_away_2023.jpg"
+        }
+    }
+]
