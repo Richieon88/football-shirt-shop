@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ shirt.name }} - My Soccer Shirts{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{ shirt.image.url }}" class="img-fluid" alt="{{ shirt.name }}">
+        </div>
+        <div class="col-md-6">
+            <h1>{{ shirt.name }}</h1>
+            <p>Team: {{ shirt.get_team_display }}</p>
+            <p>Season: {{ shirt.season }}</p>
+            <p>Type: {{ shirt.get_type_display }}</p>
+            <p>SKU: {{ shirt.sku }}</p>
+            <p>Price: ${{ shirt.price }}</p>
+            <p>{{ shirt.description }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
