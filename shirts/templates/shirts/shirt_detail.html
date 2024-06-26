@@ -12,11 +12,22 @@
             <h1>{{ shirt.name }}</h1>
             <p>Team: {{ shirt.get_team_display }}</p>
             <p>Season: {{ shirt.season }}</p>
-            <p>Type: {{ shirt.get_type_display }}</p>
+            <p>Type: {{ shirt.get_home_or_away_display }}</p>
             <p>SKU: {{ shirt.sku }}</p>
             <p>Price: ${{ shirt.price }}</p>
             <p>{{ shirt.description }}</p>
-            <button type="button" class="btn btn-primary btn-lg">Add to Cart</button>
+            <form action="{% url 'add_to_cart' shirt.id %}" method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="size" class="form-label">Size</label>
+                    <select class="form-select" id="size" name="size">
+                        {% for shirt_size in shirt_sizes %}
+                            <option value="{{ shirt_size.size.id }}">{{ shirt_size.size.get_size_display }} - {{ shirt_size.stock }} in stock</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg">Buy Now</button>
+            </form>
         </div>
     </div>
 </div>
