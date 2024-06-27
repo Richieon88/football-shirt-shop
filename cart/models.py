@@ -13,7 +13,13 @@ class CartItem(models.Model):
     cart = models.ForeignKey(Cart, related_name='items', on_delete=models.CASCADE)
     shirt = models.ForeignKey(Shirt, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
-    size = models.CharField(max_length=2)  # S, M, L, XL
+    size_choices = [
+        ('S', 'Small'),
+        ('M', 'Medium'),
+        ('L', 'Large'),
+        ('XL', 'Extra Large'),
+    ]
+    size = models.CharField(max_length=2, choices=size_choices)
 
     def __str__(self):
         return f"{self.quantity} of {self.shirt.name} in size {self.size}"

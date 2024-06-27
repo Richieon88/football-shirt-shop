@@ -1,5 +1,4 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth.decorators import login_required
 from .models import Cart, CartItem
 from shirts.models import Shirt
 from django.db.models import F
@@ -19,15 +18,20 @@ def add_to_cart(request, shirt_id):
     shirt = get_object_or_404(Shirt, id=shirt_id)
     cart = get_cart(request)
     size = request.POST.get('size')
-    cart_item, created = CartItem.objects.get_or_create(cart=cart, shirt=shirt, size=size)
-    if not created:
-        cart_item.quantity = F('quantity') + 1
-        cart_item.save()
+    if size:
+        cart_item, created = CartItem.objects.get_or_create(cart=cart, shirt=shirt, size=size)
+        if not created:
+            cart_item.quantity = F('quantity') + 1
+            cart_item.save()
+    else:
+        # Handle the case where size is not provided
+        return redirect('shirts:shirt_detail', pk=shirt_id)
     return redirect('cart:cart_detail')
 
 def cart_detail(request):
     cart = get_cart(request)
-    return render(request, 'cart/cart_detail.html', {'cart': cart})
+    cart_items = cart.items.all()
+    return render(request, 'cart/cart_detail.html', {'cart': cart, 'cart_items': cart_items})
 
 def remove_from_cart(request, item_id):
     cart_item = get_object_or_404(CartItem, id=item_id, cart=get_cart(request))
