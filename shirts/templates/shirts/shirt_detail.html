@@ -12,7 +12,7 @@
             <h2>{{ shirt.name }}</h2>
             <p>{{ shirt.description }}</p>
             <p>Price: ${{ shirt.price }}</p>
-            <form action="{% url 'cart:add_to_cart' shirt.id %}" method="post">
+            <form id="add-to-cart-form" action="{% url 'cart:add_to_cart' shirt.id %}" method="post">
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="size">Size:</label>
@@ -28,4 +28,49 @@
         </div>
     </div>
 </div>
+
+<!-- Toast Notification -->
+<div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 11">
+    <div id="cart-toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto">Cart</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            Item added to cart!
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('add-to-cart-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const form = event.target;
+        const formData = new FormData(form);
+        const csrfToken = form.querySelector('[name=csrfmiddlewaretoken]').value;
+
+        fetch(form.action, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrfToken,
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message) {
+                const toast = new bootstrap.Toast(document.getElementById('cart-toast'));
+                toast.show();
+            } else if (data.error) {
+                alert(data.error);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+});
+</script>
 {% endblock %}

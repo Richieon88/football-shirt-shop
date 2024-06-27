@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.http import JsonResponse
 from .models import Cart, CartItem
 from shirts.models import Shirt
 from django.db.models import F
@@ -23,8 +24,11 @@ def add_to_cart(request, shirt_id):
         if not created:
             cart_item.quantity = F('quantity') + 1
             cart_item.save()
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({'message': 'Item added to cart'}, status=200)
     else:
-        # Handle the case where size is not provided
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({'error': 'Size not provided'}, status=400)
         return redirect('shirts:shirt_detail', pk=shirt_id)
     return redirect('cart:cart_detail')
 
