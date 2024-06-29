@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Order Confirmation</h2>
+    <p>Thank you for your order, {{ order.customer_name }}!</p>
+    <p>Your order ID is {{ order.id }}.</p>
+    <h4>Order Details:</h4>
+    <ul>
+        {% for item in order.items.all %}
+            <li>{{ item.quantity }} x {{ item.shirt.name }} ({{ item.size }}) - ${{ item.price }}</li>
+        {% endfor %}
+    </ul>
+    <p>Total: ${{ order.items.all|sum:'price' }}</p>
+</div>
+{% endblock %}
