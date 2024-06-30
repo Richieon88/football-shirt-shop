@@ -3,7 +3,10 @@ from .models import Order, OrderItem
 from cart.views import get_cart
 
 def checkout(request):
+    print("Checkout view called")
     cart = get_cart(request)
+    print(f"Cart items: {cart.items.count()}")
+    print(cart)
     if request.method == 'POST':
         # Process the order
         order = Order(
