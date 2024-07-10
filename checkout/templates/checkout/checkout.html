@@ -6,7 +6,7 @@
     {% if cart.items.all %}
         <ul>
             {% for item in cart.items.all %}
-                <li>{{ item.quantity }}x {{ item.shirt.name }} ({{ item.size }}) - ${{ item.shirt.price }}</li>
+                <li>{{ item.quantity }}x {{ item.shirt.name }} ({{ item.size }}) - ${{ item.price }}</li>
             {% endfor %}
         </ul>
     {% else %}

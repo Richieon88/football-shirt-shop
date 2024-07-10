@@ -9,6 +9,9 @@ class Cart(models.Model):
     def __str__(self):
         return f"Cart of {self.user.username if self.user else 'Anonymous'}"
 
+    def total_price(self):
+        return sum(item.total_price() for item in self.items.all())
+
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, related_name='items', on_delete=models.CASCADE)
     shirt = models.ForeignKey(Shirt, on_delete=models.CASCADE)
@@ -23,3 +26,6 @@ class CartItem(models.Model):
 
     def __str__(self):
         return f"{self.quantity} of {self.shirt.name} in size {self.size}"
+
+    def total_price(self):
+        return self.quantity * self.shirt.price
