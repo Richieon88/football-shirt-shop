@@ -8,6 +8,7 @@ class Order(models.Model):
     stripe_charge_id = models.CharField(max_length=100, blank=True, null=True)
     payment_status = models.CharField(max_length=50, default='pending')
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)  # Add this line
 
     def __str__(self):
         return f"Order {self.id} - {self.customer_name}"
