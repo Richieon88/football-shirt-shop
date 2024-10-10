@@ -10,13 +10,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY', 'your-default-secret-key-for-local')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["your-heroku-app-name.herokuapp.com", "localhost", "127.0.0.1"]
 
 CSRF_TRUSTED_ORIGINS = [
+    "https://8000-richieon88-footballshir-wkdrhswuteg.ws.codeinstitute-ide.net",
     "https://your-heroku-app-name.herokuapp.com",
-    "https://8000-richieon88-footballshir-eo7cexb7lrl.ws.codeinstitute-ide.net"
 ]
 
 # Application definition

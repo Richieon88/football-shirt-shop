@@ -1,0 +1,1 @@
+web: gunicorn football_shirt_shop.wsgi --log-file -
