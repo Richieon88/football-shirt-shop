@@ -3,6 +3,13 @@ from pathlib import Path
 import dj_database_url
 import django_heroku
 
+# Conditionally import env.py if the app is running locally (not on Heroku)
+if os.getenv('HEROKU') is None:
+    try:
+        import env  # This will load environment variables for local development
+    except ImportError:
+        pass
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
