@@ -12,11 +12,11 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'your-default-secret-key-for-local')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False').lower() in ['true', '1']
 
-ALLOWED_HOSTS = ["your-heroku-app-name.herokuapp.com", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["football-shirt-shop.herokuapp.com", "localhost", "127.0.0.1"]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://8000-richieon88-footballshir-wkdrhswuteg.ws.codeinstitute-ide.net",
-    "https://your-heroku-app-name.herokuapp.com",
+    "https://football-shirt-shop.herokuapp.com",
 ]
 
 # Application definition
