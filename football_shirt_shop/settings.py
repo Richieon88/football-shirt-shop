@@ -6,7 +6,7 @@ import django_heroku
 # Conditionally import env.py if the app is running locally (not on Heroku)
 if os.getenv('HEROKU') is None:
     try:
-        import env  # This will load environment variables for local development
+        import env
     except ImportError:
         pass
 
