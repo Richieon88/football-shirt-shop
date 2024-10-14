@@ -17,9 +17,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY', 'your-default-secret-key-for-local')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', 'False').lower() in ['true', '1']
+DEBUG = True
 
-ALLOWED_HOSTS = ["football-shirt-shop.herokuapp.com", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["football-shirt-shop.herokuapp.com", "localhost", "127.0.0.1", "8000-richieon88-footballshir-wkdrhswuteg.ws.codeinstitute-ide.net"]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://8000-richieon88-footballshir-wkdrhswuteg.ws.codeinstitute-ide.net",
@@ -98,9 +98,17 @@ LOGIN_REDIRECT_URL = '/'
 WSGI_APPLICATION = "football_shirt_shop.wsgi.application"
 
 # Database
-DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
-}
+if os.getenv('HEROKU') is None:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+else:
+    DATABASES = {
+        'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+    }
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -135,9 +143,17 @@ STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
 
 # Security settings for production
-SECURE_SSL_REDIRECT = not DEBUG
-SESSION_COOKIE_SECURE = not DEBUG
-CSRF_COOKIE_SECURE = not DEBUG
+if os.getenv('HEROKU') is None:
+    SECURE_SSL_REDIRECT = False
+else:
+    SECURE_SSL_REDIRECT = True
+if os.getenv('HEROKU') is None:
+    SESSION_COOKIE_SECURE = False
+    CSRF_COOKIE_SECURE = False
+else:
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+
 SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = 'DENY'
 
