@@ -16,7 +16,20 @@ LOGGING = {
         'handlers': ['console'],
         'level': 'INFO',
     },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'ERROR',  # Capture errors from Django
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['console'],
+            'level': 'ERROR',  # Log 500 errors
+            'propagate': False,
+        },
+    },
 }
+
 
 # Conditionally import env.py if the app is running locally (not on Heroku)
 if os.getenv('HEROKU') is None:
