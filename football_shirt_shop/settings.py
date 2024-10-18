@@ -1,7 +1,22 @@
 import os
 from pathlib import Path
+import logging
 import dj_database_url
 import django_heroku
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
+    },
+}
 
 # Conditionally import env.py if the app is running locally (not on Heroku)
 if os.getenv('HEROKU') is None:
@@ -159,3 +174,6 @@ X_FRAME_OPTIONS = 'DENY'
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
+
+print(f"DEBUG is set to: {DEBUG}")
+
