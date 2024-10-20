@@ -3,6 +3,10 @@ from pathlib import Path
 import logging
 import dj_database_url
 import django_heroku
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+import cloudinary_storage
 
 LOGGING = {
     'version': 1,
@@ -29,8 +33,6 @@ LOGGING = {
         },
     },
 }
-
-
 
 # Conditionally import env.py if the app is running locally (not on Heroku)
 if os.getenv('HEROKU') is None:
@@ -64,6 +66,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
+    "cloudinary_storage",
+    "cloudinary",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
@@ -161,8 +165,17 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+# Cloudinary for Media
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+# Media settings
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
@@ -190,4 +203,3 @@ X_FRAME_OPTIONS = 'DENY'
 django_heroku.settings(locals())
 
 print(f"DEBUG is set to: {DEBUG}")
-
