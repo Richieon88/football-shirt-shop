@@ -1,4 +1,5 @@
 from django.db import models
+from cloudinary.models import CloudinaryField  # Import CloudinaryField
 
 class Shirt(models.Model):
     team_choices = [
@@ -28,7 +29,7 @@ class Shirt(models.Model):
     home_or_away = models.CharField(max_length=5, choices=home_or_away_choices)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     description = models.TextField()
-    image = models.ImageField(upload_to='shirts/')
+    image = CloudinaryField('image')
     stock = models.PositiveIntegerField(default=0)
 
     def __str__(self):
