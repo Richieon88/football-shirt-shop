@@ -8,9 +8,9 @@
             "description": "Official Arsenal home shirt for the 2023/2024 season.",
             "team": "ARS",
             "season": "2023/2024",
-            "type": "home",
+            "home_or_away": "Home",
             "price": 79.99,
-            "image": "shirts/arsenal_home_2023.jpg"
+            "image": "https://res.cloudinary.com/dxv4zqjlz/image/upload/v1729641474/eefcbced-b0d2-4c43-bf74-ed59c462e81c.png"
         }
     },
     {
@@ -22,9 +22,9 @@
             "description": "Official Chelsea away shirt for the 2023/2024 season.",
             "team": "CHE",
             "season": "2023/2024",
-            "type": "away",
+            "home_or_away": "Away",
             "price": 79.99,
-            "image": "shirts/chelsea_away_2023.jpg"
+            "image": "https://res.cloudinary.com/dxv4zqjlz/image/upload/v1729641526/chelsea_away_2023_hg6low.jpg"
         }
     }
 ]
