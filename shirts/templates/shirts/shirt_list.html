@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load cloudinary %}
 
 {% block title %}Shirts - My Soccer Shirts{% endblock %}
 
@@ -9,7 +10,8 @@
         {% for shirt in shirts %}
         <div class="col-md-4">
             <div class="card mb-4 shadow-sm">
-                <img class="card-img-top" src="{{ shirt.image.url }}" alt="{{ shirt.name }}">
+                <!-- Use cloudinary tag for images -->
+                <img class="card-img-top" src="{% cloudinary_url shirt.image %}" alt="{{ shirt.name }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ shirt.name }}</h5>
                     <p class="card-text">{{ shirt.description|truncatewords:20 }}</p>
