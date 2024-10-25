@@ -3,9 +3,10 @@
 {% block content %}
 <div class="container mt-5">
     <h2>Payment</h2>
+    <p>Total Amount: ${{ order.total_price }}</p>
     <form id="payment-form">
         <div id="card-element"><!--Stripe.js injects the Card Element--></div>
-        <button id="submit" class="btn btn-primary mt-3">Pay</button>
+        <button id="submit" class="btn btn-primary mt-3">Pay ${{ order.total_price }}</button>
         <div id="card-errors" role="alert"></div>
     </form>
 </div>
@@ -20,6 +21,7 @@
     var form = document.getElementById('payment-form');
     form.addEventListener('submit', function(event) {
         event.preventDefault();
+
         stripe.createPaymentMethod({
             type: 'card',
             card: card,
@@ -29,19 +31,17 @@
             }
         }).then(function(result) {
             if (result.error) {
-                // Display error.message in your UI
                 document.getElementById('card-errors').textContent = result.error.message;
             } else {
-                // Send paymentMethod.id to your server
+                console.log("{% url 'checkout:order_confirmation' order.id %}");
                 fetch("{% url 'checkout:order_confirmation' order.id %}", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'X-CSRFToken': '{{ csrf_token }}'
                     },
-                    body: JSON.stringify({payment_method_id: result.paymentMethod.id})
+                    body: JSON.stringify({ payment_method_id: result.paymentMethod.id })
                 }).then(function(result) {
-                    // Handle server response
                     return result.json();
                 }).then(handleServerResponse);
             }
@@ -50,33 +50,25 @@
 
     function handleServerResponse(response) {
         if (response.error) {
-            // Show error from server on payment form
             document.getElementById('card-errors').textContent = response.error.message;
         } else if (response.requires_action) {
-            // Use Stripe.js to handle required card action
-            stripe.handleCardAction(
-                response.payment_intent_client_secret
-            ).then(handleStripeJsResult);
+            stripe.handleCardAction(response.payment_intent_client_secret).then(handleStripeJsResult);
         } else {
-            // Show success message
             window.location.href = response.success_url;
         }
     }
 
     function handleStripeJsResult(result) {
         if (result.error) {
-            // Show error in payment form
             document.getElementById('card-errors').textContent = result.error.message;
         } else {
-            // The card action has been handled
-            // The PaymentIntent can be confirmed again on the server
             fetch("{% url 'checkout:order_confirmation' order.id %}", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'X-CSRFToken': '{{ csrf_token }}'
                 },
-                body: JSON.stringify({payment_intent_id: result.paymentIntent.id})
+                body: JSON.stringify({ payment_intent_id: result.paymentIntent.id })
             }).then(function(result) {
                 return result.json();
             }).then(handleServerResponse);

@@ -9,6 +9,7 @@ class Cart(models.Model):
     def __str__(self):
         return f"Cart of {self.user.username if self.user else 'Anonymous'}"
 
+    # Calculate total price for all items in the cart
     def total_price(self):
         return sum(item.total_price() for item in self.items.all())
 
@@ -27,5 +28,6 @@ class CartItem(models.Model):
     def __str__(self):
         return f"{self.quantity} of {self.shirt.name} in size {self.size}"
 
+    # Calculate the total price of the cart item
     def total_price(self):
         return self.quantity * self.shirt.price
