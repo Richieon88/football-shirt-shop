@@ -11,6 +11,6 @@
             <li>{{ item.quantity }} x {{ item.shirt.name }} ({{ item.size }}) - ${{ item.price }}</li>
         {% endfor %}
     </ul>
-    <p>Total: ${{ order.items.all|sum:'price' }}</p>
+    <p>Total: ${{ order.total_price }}</p>
 </div>
 {% endblock %}
