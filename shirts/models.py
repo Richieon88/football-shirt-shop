@@ -2,20 +2,6 @@ from django.db import models
 from cloudinary.models import CloudinaryField  # Import CloudinaryField
 
 class Shirt(models.Model):
-    team_choices = [
-        ('ARS', 'Arsenal'),
-        ('CHE', 'Chelsea'),
-        ('LIV', 'Liverpool'),
-        ('MCI', 'Manchester City'),
-        ('MUN', 'Manchester United'),
-    ]
-
-    season_choices = [
-        ('2021/2022', '2021/2022'),
-        ('2022/2023', '2022/2023'),
-        ('2023/2024', '2023/2024'),
-    ]
-
     home_or_away_choices = [
         ('Home', 'Home'),
         ('Away', 'Away'),
@@ -24,8 +10,8 @@ class Shirt(models.Model):
 
     sku = models.CharField(max_length=20, unique=True)
     name = models.CharField(max_length=100)
-    team = models.CharField(max_length=3, choices=team_choices)
-    season = models.CharField(max_length=9, choices=season_choices)
+    team = models.CharField(max_length=50)
+    season = models.CharField(max_length=9)
     home_or_away = models.CharField(max_length=5, choices=home_or_away_choices)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     description = models.TextField()

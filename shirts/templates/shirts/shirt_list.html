@@ -6,6 +6,37 @@
 {% block content %}
 <div class="container">
     <h1>Shirts</h1>
+
+    <!-- Filter Section -->
+    <form method="GET" class="mb-4">
+        <div class="row">
+            <div class="col-md-4">
+                <label for="team">Team:</label>
+                <select name="team" id="team" class="form-select">
+                    <option value="">All Teams</option>
+                    <option value="Arsenal">Arsenal</option>
+                    <option value="Chelsea">Chelsea</option>
+                    <option value="Liverpool">Liverpool</option>
+                    <option value="Manchester City">Manchester City</option>
+                    <option value="Manchester United">Manchester United</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="season">Season:</label>
+                <select name="season" id="season" class="form-select">
+                    <option value="">All Seasons</option>
+                    <option value="2021/2022">2021/2022</option>
+                    <option value="2022/2023">2022/2023</option>
+                    <option value="2023/2024">2023/2024</option>
+                </select>
+            </div>
+            <div class="col-md-4 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Shirts List -->
     <div class="row">
         {% for shirt in shirts %}
         <div class="col-md-4">
@@ -24,6 +55,8 @@
                 </div>
             </div>
         </div>
+        {% empty %}
+        <p>No shirts match your filters.</p>
         {% endfor %}
     </div>
 </div>
