@@ -15,7 +15,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{% url 'home:index' %}">
                 My Soccer Shirts
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,13 +24,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home:index' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Shirts</a>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'shirt_list' %}active{% endif %}" href="{% url 'shirts:shirt_list' %}">Shirts</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Teams</a>
+                        <a class="nav-link {% if 'team=true' in request.GET.urlencode %}active{% endif %}" href="{% url 'shirts:shirt_list' %}?team=true">Teams</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -42,9 +42,9 @@
                         <ul class="dropdown-menu dropdown-menu-end border-0" aria-labelledby="user-options">
                             {% if request.user.is_authenticated %}
                                 {% if request.user.is_superuser %}
-                                    <li><a href="#" class="dropdown-item">Product Management</a></li>
+                                    <li><a href="{% url 'admin:index' %}" class="dropdown-item">Product Management</a></li>
                                 {% endif %}
-                                <li><a href="#" class="dropdown-item">My Profile</a></li>
+                                <li><a href="{% url 'account_profile' %}" class="dropdown-item">My Profile</a></li>
                                 <li><a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a></li>
                             {% else %}
                                 <li><a href="{% url 'account_signup' %}" class="dropdown-item">Register</a></li>

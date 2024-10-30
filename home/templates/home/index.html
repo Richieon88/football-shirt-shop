@@ -13,11 +13,11 @@
                 <p class="lead mb-4">Explore the latest or greatest soccer shirts for your favorite teams</p>
                 <div>
                     <a href="{% url 'shirts:shirt_list' %}" class="btn btn-primary btn-lg me-2">Shop Now</a>
-                    <a href="{% url 'teams:list' %}" class="btn btn-outline-secondary btn-lg">Explore Teams</a>
+                    <a href="{% url 'shirts:shirt_list' %}" class="btn btn-outline-secondary btn-lg">Explore Teams</a>
                 </div>
             </div>
             <div class="col-lg-6 text-center">
-                <img src="{% cloudinary 'https://res.cloudinary.com/dxv4zqjlz/image/upload/v1730076151/hero_image_oibidp.jpg' %}" alt="Hero image of a football shirt" class="img-fluid rounded">
+                <img src="https://res.cloudinary.com/dxv4zqjlz/image/upload/v1730076151/hero_image_oibidp.jpg" alt="Hero image of a football shirt" class="img-fluid rounded">
             </div>
         </div>
     </div>

@@ -48,7 +48,7 @@
                     <p class="card-text">{{ shirt.description|truncatewords:20 }}</p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
-                            <a href="{% url 'shirt_detail' shirt.pk %}" class="btn btn-sm btn-outline-secondary">View</a>
+                            <a href="{% url 'shirts:shirt_detail' shirt.pk %}" class="btn btn-sm btn-outline-secondary">View</a>
                         </div>
                         <small class="text-muted">${{ shirt.price }}</small>
                     </div>

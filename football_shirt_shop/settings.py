@@ -34,7 +34,7 @@ LOGGING = {
     },
 }
 
-# Conditionally import env.py if the app is running locally (not on Heroku)
+
 if os.getenv('HEROKU') is None:
     try:
         import env
@@ -66,11 +66,11 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
-    "cloudinary_storage",
-    "cloudinary",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "cloudinary_storage",
+    "cloudinary",
     "home",
     "shirts",
     "cart",
