@@ -34,7 +34,6 @@ LOGGING = {
     },
 }
 
-
 if os.getenv('HEROKU') is None:
     try:
         import env
@@ -50,10 +49,15 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'your-default-secret-key-for-local')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False').lower() in ['true', '1']
 
-ALLOWED_HOSTS = ["football-shirt-shop.herokuapp.com", "localhost", "127.0.0.1", "8000-richieon88-footballshir-wkdrhswuteg.ws.codeinstitute-ide.net"]
+ALLOWED_HOSTS = [
+    "football-shirt-shop.herokuapp.com",
+    "localhost",
+    "127.0.0.1",
+    "8000-richieon88-footballshir-f5ra4hucbpk.ws.codeinstitute-ide.net"
+]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://8000-richieon88-footballshir-wkdrhswuteg.ws.codeinstitute-ide.net",
+    "https://8000-richieon88-footballshir-f5ra4hucbpk.ws.codeinstitute-ide.net",
     "https://football-shirt-shop.herokuapp.com",
 ]
 
@@ -79,13 +83,13 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",  # Enable WhiteNoise for serving static files
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # WhiteNoise for static files
     "allauth.account.middleware.AccountMiddleware",
 ]
 
@@ -186,15 +190,13 @@ STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
 
 # Security settings for production
 if os.getenv('HEROKU') is None:
-    SECURE_SSL_REDIRECT = False
-else:
-    SECURE_SSL_REDIRECT = True
-if os.getenv('HEROKU') is None:
+    SECURE_SSL_REDIRECT = False  # Temporarily disabled for debugging
     SESSION_COOKIE_SECURE = False
     CSRF_COOKIE_SECURE = False
 else:
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
+    SECURE_SSL_REDIRECT = False  # Temporarily disabled for debugging
+    SESSION_COOKIE_SECURE = False
+    CSRF_COOKIE_SECURE = False
 
 SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = 'DENY'
