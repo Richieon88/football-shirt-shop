@@ -51,6 +51,12 @@
                             {% endif %}
                         </ul>
                     </li>
+                    <!-- Cart Link -->
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'cart_detail' %}active{% endif %}" href="{% url 'cart:cart_detail' %}">
+                            Cart <span class="badge bg-secondary">{{ cart_items_count }}</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
