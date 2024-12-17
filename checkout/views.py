@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.conf import settings
 from django.http import JsonResponse
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 from .models import Order, OrderItem
 from cart.models import Cart
 import stripe
@@ -23,10 +26,23 @@ def get_cart(request):
         cart, created = Cart.objects.get_or_create(session_key=session_key)
     return cart
 
+# Send order confirmation email
+def send_order_confirmation_email(order):
+    subject = "Order Confirmation - My Soccer Shirts"
+    # Prepare the HTML and plain-text message
+    html_message = render_to_string('checkout/order_confirmation_email.html', {'order': order})
+    plain_message = strip_tags(html_message)
+    from_email = settings.DEFAULT_FROM_EMAIL
+    recipient_list = [order.customer_email]
+
+    # Send the email
+    send_mail(subject, plain_message, from_email, recipient_list, html_message=html_message)
+
 # Checkout view to handle order creation and redirection to payment
 def checkout(request):
     cart = get_cart(request)
     if request.method == 'POST':
+        # Create the order
         order = Order(
             customer_name=request.POST['name'],
             customer_email=request.POST['email'],
@@ -46,6 +62,9 @@ def checkout(request):
 
         # Clear the cart after transferring items
         cart.items.all().delete()
+
+        # Send the order confirmation email
+        send_order_confirmation_email(order)
 
         # Redirect to payment page with order id
         return redirect('checkout:payment', order_id=order.id)
