@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.conf import settings
 from django.http import JsonResponse
 from django.core.mail import send_mail
+from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from .models import Order, OrderItem
@@ -132,3 +133,8 @@ def handle_payment_intent(intent, order):
         return JsonResponse({
             'error': {'message': 'Invalid PaymentIntent status'}
         })
+
+@login_required
+def order_history(request):
+    orders = Order.objects.filter(customer_email=request.user.email).order_by('-created_at')
+    return render(request, 'checkout/order_history.html', {'orders': orders})

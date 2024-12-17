@@ -23,18 +23,6 @@
     </div>
 </section>
 
-<!-- Benefits for Registered Users -->
-<section class="register-benefits text-center bg-info text-white py-4">
-    <div class="container">
-        <h2 class="fw-bold">Why Register?</h2>
-        <p class="lead mb-3">
-            Sign up to save your cart, track orders, and access exclusive discounts on soccer shirts.
-        </p>
-        <a href="{% url 'account_signup' %}" class="btn btn-light btn-lg me-2">Register Now</a>
-        <a href="{% url 'account_login' %}" class="btn btn-outline-light btn-lg">Login</a>
-    </div>
-</section>
-
 <!-- Featured Products Section -->
 <section class="featured-products py-5">
     <div class="container">
@@ -56,6 +44,22 @@
             </div>
             {% endfor %}
         </div>
+    </div>
+</section>
+
+<!-- Newsletter Signup Section -->
+<section class="newsletter py-5 bg-dark text-white">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-4">Subscribe to Our Newsletter</h2>
+        <form method="POST" action="{% url 'home:newsletter_signup' %}" class="row justify-content-center">
+            {% csrf_token %}
+            <div class="col-md-6">
+                <input type="email" name="email" class="form-control form-control-lg mb-3" placeholder="Enter your email" required>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary btn-lg">Subscribe</button>
+            </div>
+        </form>
     </div>
 </section>
 {% endblock %}

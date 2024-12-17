@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}My Order History{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="mb-4">My Order History</h1>
+    {% if orders %}
+        <ul class="list-group">
+            {% for order in orders %}
+            <li class="list-group-item">
+                <strong>Order ID:</strong> {{ order.id }}<br>
+                <strong>Date:</strong> {{ order.created_at|date:"F d, Y" }}<br>
+                <strong>Total:</strong> ${{ order.total_price }}<br>
+                <strong>Status:</strong> {{ order.payment_status|title }}
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You have no past orders.</p>
+    {% endif %}
+</div>
+{% endblock %}
