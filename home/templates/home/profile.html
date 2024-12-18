@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile - My Soccer Shirts{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="display-4">My Profile</h1>
+    <p class="lead">Welcome, {{ request.user.username }}!</p>
+
+    <form method="POST" class="mt-4">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+
+    <hr>
+    <a href="{% url 'checkout:order_history' %}" class="btn btn-secondary">View My Orders</a>
+</div>
+{% endblock %}

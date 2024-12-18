@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
-from .forms import NewsletterSignupForm
+from .forms import NewsletterSignupForm, ProfileUpdateForm
 from .models import NewsletterSubscriber
 
 # Create your views here.
@@ -34,3 +36,17 @@ def newsletter_signup(request):
         form = NewsletterSignupForm()
 
     return render(request, 'home/newsletter_signup.html', {'form': form})
+
+@login_required
+def profile(request):
+    """A view to display and update the user's profile."""
+    if request.method == 'POST':
+        form = ProfileUpdateForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your profile has been updated successfully!')
+            return redirect('home:profile')
+    else:
+        form = ProfileUpdateForm(instance=request.user)
+
+    return render(request, 'home/profile.html', {'form': form})
