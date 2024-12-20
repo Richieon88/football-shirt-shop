@@ -1,6 +1,7 @@
 /* Navbar */
 .navbar {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    margin-bottom: 0; /* Remove extra margin below navbar */
 }
 
 .navbar-brand {
@@ -35,6 +36,9 @@
 footer {
     background-color: #222;
     color: #fff;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    margin-top: 0; /* Remove extra gap above footer */
 }
 
 footer a {
@@ -64,9 +68,15 @@ footer .bi {
     margin-right: 5px;
 }
 
+body {
+    margin: 0; /* Remove default body margins */
+    padding: 0; /* Remove default body padding */
+    box-sizing: border-box;
+}
+
 /* Hero Section */
 .hero-section {
-    padding: 4rem 1rem;
+    padding: 3rem 1rem; /* Reduced padding */
     background: linear-gradient(
         to bottom,
         rgba(0, 0, 0, 0.5),
@@ -99,8 +109,13 @@ footer .bi {
 .newsletter {
     background: linear-gradient(135deg, #1e3c72, #2a5298);
     color: #fff;
-    padding: 4rem 1rem;
+    padding: 3rem 1rem; /* Unified padding */
     text-align: center;
+    margin-bottom: 0; /* Remove bottom margin */
+}
+
+.newsletter > * {
+    margin-bottom: 0; /* Remove bottom margins of children */
 }
 
 .newsletter input {
@@ -127,7 +142,7 @@ footer .bi {
 
 /* Feedback Messages */
 .alert {
-    margin-bottom: 1.5rem;
+    margin-bottom: 0; /* Ensure no gap below messages */
     border-radius: 0.5rem;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow */
 }
@@ -154,7 +169,8 @@ footer .bi {
 
 /* Section Spacing */
 section {
-    padding: 4rem 1rem;
+    padding: 3rem 1rem; /* Unified section spacing */
+    margin: 0; /* Remove default margin */
 }
 
 section h2, section h1 {

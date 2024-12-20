@@ -17,6 +17,7 @@ class Shirt(models.Model):
     description = models.TextField()
     image = CloudinaryField('image')
     stock = models.PositiveIntegerField(default=0)
+    featured = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.name} ({self.team} - {self.season} - {self.home_or_away})"

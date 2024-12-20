@@ -7,12 +7,17 @@ from django.core.mail import send_mail
 from django.conf import settings
 from .forms import NewsletterSignupForm, ProfileUpdateForm
 from .models import NewsletterSubscriber
+from shirts.models import Shirt
 
 # Create your views here.
 
 def index(request):
     """ A view to return the index page"""
-    return render(request, 'home/index.html')
+    featured_shirts = Shirt.objects.filter(featured=True)  # Query featured shirts
+    context = {
+        'featured_shirts': featured_shirts,
+    }
+    return render(request, 'home/index.html', context)
 
 def newsletter_signup(request):
     if request.method == 'POST':
@@ -37,7 +42,6 @@ def newsletter_signup(request):
         form = NewsletterSignupForm()
 
     return render(request, 'home/newsletter_signup.html', {'form': form})
-
 
 @login_required
 def profile(request):

@@ -33,7 +33,7 @@
                     <div class="card-body text-center">
                         <h5 class="card-title">{{ shirt.name }}</h5>
                         <p class="card-text text-muted">${{ shirt.price }}</p>
-                        <a href="{% url 'shirt:detail' shirt.id %}" class="btn btn-primary btn-sm">View Details</a>
+                        <a href="{% url 'shirts:shirt_detail' shirt.id %}" class="btn btn-primary btn-sm">View Details</a>
                     </div>
                 </div>
             </div>
@@ -51,7 +51,7 @@
         {% if messages %}
             {% for message in messages %}
                 {% if message.tags == 'newsletter' %}
-                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    <div class="alert alert-info alert-dismissible fade show mb-3" role="alert">
                         {{ message }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
