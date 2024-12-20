@@ -1,4 +1,8 @@
 /* Navbar */
+.navbar {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
 .navbar-brand {
     font-size: 1.5rem;
     font-weight: bold;
@@ -6,45 +10,78 @@
 
 .navbar-dark .navbar-nav .nav-link {
     color: rgba(255, 255, 255, 0.8);
-    transition: color 0.3s ease;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    padding: 0.5rem 1rem; /* Improved spacing */
 }
 
 .navbar-dark .navbar-nav .nav-link:hover {
+    color: #ffd700; /* Gold-like hover effect */
+    background-color: rgba(255, 255, 255, 0.1); /* Light background on hover */
+}
+
+.navbar-dark .navbar-nav .active {
     color: #fff;
+    background-color: #444; /* Highlight active page */
+    border-radius: 0.25rem;
 }
 
 .dropdown-menu {
     font-size: 1rem;
 }
 
-/* Hero Section */
-.hero-section {
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    padding: 5rem 1rem;
+/* Footer */
+footer {
+    background-color: #222;
     color: #fff;
 }
 
-.hero-section .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
-    z-index: 1;
+footer a {
+    color: #aaa;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.2s ease;
 }
 
-.hero-section .container {
-    position: relative;
-    z-index: 2;
+footer a:hover {
+    color: #ffd700; /* Gold-like hover color */
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+footer p {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7); /* Softer text for non-primary content */
+}
+
+footer .row {
+    margin-bottom: 15px;
+}
+
+footer .bi {
+    font-size: 1.2rem;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+/* Hero Section */
+.hero-section {
+    padding: 4rem 1rem;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.7)
+    ),
+    url('https://res.cloudinary.com/dxv4zqjlz/image/upload/v1730076151/hero_image_oibidp.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    text-align: center; /* Center-align text for better visual impact */
 }
 
 .hero-section h1 {
     font-size: 3rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .hero-section p {
@@ -52,14 +89,52 @@
     margin-bottom: 2rem;
 }
 
-.hero-section .btn-primary {
-    padding: 0.75rem 1.5rem;
+.hero-section .btn-primary,
+.hero-section .btn-outline-secondary {
     font-size: 1.1rem;
+    padding: 0.75rem 2rem;
 }
 
-.hero-section .btn-outline-light {
-    padding: 0.75rem 1.5rem;
-    font-size: 1.1rem;
+/* Newsletter Section */
+.newsletter {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #fff;
+    padding: 4rem 1rem;
+    text-align: center;
+}
+
+.newsletter input {
+    border: none;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.newsletter button {
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.newsletter button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Feedback Messages */
+.alert {
+    margin-bottom: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+.alert-info {
+    background-color: #e3f2fd; /* Lighter blue for info messages */
+    color: #0d6efd; /* Bootstrap's primary color */
 }
 
 /* General Button Styling */
@@ -77,6 +152,16 @@
     color: #fff;
 }
 
+/* Section Spacing */
+section {
+    padding: 4rem 1rem;
+}
+
+section h2, section h1 {
+    margin-bottom: 2rem;
+    font-weight: bold;
+}
+
 /* Media Queries */
 @media (max-width: 768px) {
     .hero-section h1 {
@@ -85,6 +170,14 @@
 
     .hero-section p {
         font-size: 1.1rem;
+    }
+
+    footer .col-md-12 {
+        text-align: center;
+    }
+
+    .navbar-dark .navbar-nav .nav-link {
+        padding: 0.5rem 0.75rem; /* Smaller padding for mobile */
     }
 }
 

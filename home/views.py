@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth import login, logout
 from django.core.mail import send_mail
 from django.conf import settings
 from .forms import NewsletterSignupForm, ProfileUpdateForm
@@ -28,14 +29,15 @@ def newsletter_signup(request):
                     [email],
                     fail_silently=False,
                 )
-                messages.success(request, "Thank you for subscribing to our newsletter!")
+                messages.add_message(request, messages.SUCCESS, "Thank you for subscribing to our newsletter!", extra_tags='newsletter')
             else:
-                messages.warning(request, "This email is already subscribed.")
+                messages.add_message(request, messages.WARNING, "This email is already subscribed.", extra_tags='newsletter')
             return redirect('home:index')  # Redirect to homepage
     else:
         form = NewsletterSignupForm()
 
     return render(request, 'home/newsletter_signup.html', {'form': form})
+
 
 @login_required
 def profile(request):
@@ -50,3 +52,16 @@ def profile(request):
         form = ProfileUpdateForm(instance=request.user)
 
     return render(request, 'home/profile.html', {'form': form})
+
+def custom_login(request, *args, **kwargs):
+    """Custom login view to add feedback messages."""
+    response = login(request, *args, **kwargs)
+    messages.success(request, 'Welcome back, {}!'.format(request.user.username))
+    return response
+
+def custom_logout(request, *args, **kwargs):
+    """Custom logout view to add feedback messages."""
+    username = request.user.username if request.user.is_authenticated else 'Guest'
+    response = logout(request, *args, **kwargs)
+    messages.info(request, 'Goodbye, {}. You have been logged out.'.format(username))
+    return redirect('home:index')
