@@ -6,7 +6,7 @@
 {% endblock title %}
 
 {% block content %}
-    <div class="container mt-5">
+    <div class="container mt-5 mb-5">
         <h1 class="mb-4">{% trans "Sign Up" %}</h1>
 
         <p>
@@ -15,11 +15,11 @@
         </p>
 
         {% if not SOCIALACCOUNT_ONLY %}
-            <form method="post" action="{% url 'account_signup' %}">
+            <form method="post" action="{% url 'account_signup' %}" class="signup-form">
                 {% csrf_token %}
                 {{ form.as_p }}
                 {{ redirect_field }}
-                <button type="submit" class="btn btn-primary">{% trans "Sign Up" %}</button>
+                <button type="submit" class="btn btn-primary mt-3">{% trans "Sign Up" %}</button>
             </form>
         {% endif %}
 

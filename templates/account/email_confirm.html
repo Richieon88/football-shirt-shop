@@ -7,20 +7,24 @@
 {% endblock head_title %}
 
 {% block content %}
-    <div class="email-confirmation">
+<div class="container my-5 text-center">
+    <h1 class="mb-4">{% trans "Confirm Email Address" %}</h1>
+
+    <div class="card mx-auto shadow-sm p-4" style="max-width: 600px;">
         {% if confirmation %}
             {% user_display confirmation.email_address.user as user_display %}
             {% if can_confirm %}
-                <p>{% trans "Click the link below to confirm your email address:" %}</p>
-                <form method="post">
+                <p class="lead">{% trans "Please click the button below to confirm your email address." %}</p>
+                <form method="post" class="d-grid gap-2 col-6 mx-auto mt-4">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-primary">{% trans "Confirm" %}</button>
+                    <button type="submit" class="btn btn-primary btn-lg">{% trans "Confirm" %}</button>
                 </form>
             {% else %}
-                <p>{% trans "This email confirmation link is no longer valid." %}</p>
+                <p class="text-danger mt-3">{% trans "This email confirmation link is no longer valid." %}</p>
             {% endif %}
         {% else %}
-            <p>{% trans "Invalid confirmation." %}</p>
+            <p class="text-danger mt-3">{% trans "Invalid confirmation." %}</p>
         {% endif %}
     </div>
+</div>
 {% endblock content %}

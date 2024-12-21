@@ -63,9 +63,15 @@ def custom_login(request, *args, **kwargs):
     messages.success(request, 'Welcome back, {}!'.format(request.user.username))
     return response
 
-def custom_logout(request, *args, **kwargs):
-    """Custom logout view to add feedback messages."""
-    username = request.user.username if request.user.is_authenticated else 'Guest'
-    response = logout(request, *args, **kwargs)
-    messages.info(request, 'Goodbye, {}. You have been logged out.'.format(username))
-    return redirect('home:index')
+def custom_logout(request):
+    """Custom logout view to add feedback messages and redirect to logout confirmation."""
+    if request.method == 'POST':
+        username = request.user.username if request.user.is_authenticated else 'Guest'
+        logout(request)
+        messages.success(request, f'Goodbye, {username}. You have been logged out.')
+        return redirect('home:index')
+    return redirect('account_logout')
+
+def logout_confirm(request):
+    """Render logout confirmation page."""
+    return render(request, 'account/logout_confirm.html')
