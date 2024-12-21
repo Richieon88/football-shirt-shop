@@ -5,7 +5,7 @@ Your Cart
 {% endblock %}
 
 {% block content %}
-<div class="container mt-4">
+<div class="container mt-4 mb-5">  <!-- Added mb-5 for more spacing at the bottom -->
     <h2 class="mb-4">Your Shopping Cart</h2>
 
     {% if cart.items.all %}
@@ -49,7 +49,7 @@ Your Cart
             <a href="{% url 'checkout:checkout' %}" class="btn btn-primary">Proceed to Checkout</a>
         </div>
     {% else %}
-        <div class="alert alert-warning" role="alert">
+        <div class="alert alert-warning mt-5" role="alert"> <!-- Added mt-5 for empty cart spacing -->
             Your cart is empty. <a href="{% url 'shirts:shirt_list' %}" class="alert-link">Browse shirts!</a>
         </div>
     {% endif %}
