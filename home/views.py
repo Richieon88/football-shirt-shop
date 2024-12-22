@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -75,3 +76,14 @@ def custom_logout(request):
 def logout_confirm(request):
     """Render logout confirmation page."""
     return render(request, 'account/logout_confirm.html')
+
+def robots_txt(request):
+    lines = [
+        "User-agent: *",
+        "Disallow: /admin/",
+        "Disallow: /cart/",
+        "Disallow: /checkout/",
+        "Allow: /",
+        "Sitemap: https://8000-richieon88-footballshir-f5ra4hucbpk.ws.codeinstitute-ide.net/sitemap.xml",
+    ]
+    return HttpResponse("\n".join(lines), content_type="text/plain")

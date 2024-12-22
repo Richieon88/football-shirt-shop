@@ -18,7 +18,7 @@ class ShirtSitemap(Sitemap):
     priority = 0.7
 
     def items(self):
-        return Shirt.objects.all()
+        return Shirt.objects.all().order_by('-updated_at')
 
     def lastmod(self, obj):
         return obj.updated_at if obj.updated_at else now()

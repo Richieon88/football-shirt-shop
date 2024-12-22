@@ -4,6 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
 from home.sitemaps import StaticViewSitemap, ShirtSitemap
+from home.views import robots_txt
 
 sitemaps = {
     'static': StaticViewSitemap,
@@ -18,4 +19,5 @@ urlpatterns = [
     path('cart/', include('cart.urls')),
     path('checkout/', include('checkout.urls')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    path("robots.txt", robots_txt),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
