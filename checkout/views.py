@@ -30,20 +30,17 @@ def get_cart(request):
 # Send order confirmation email
 def send_order_confirmation_email(order):
     subject = "Order Confirmation - My Soccer Shirts"
-    # Prepare the HTML and plain-text message
     html_message = render_to_string('checkout/order_confirmation_email.html', {'order': order})
     plain_message = strip_tags(html_message)
     from_email = settings.DEFAULT_FROM_EMAIL
     recipient_list = [order.customer_email]
 
-    # Send the email
     send_mail(subject, plain_message, from_email, recipient_list, html_message=html_message)
 
 # Checkout view to handle order creation and redirection to payment
 def checkout(request):
     cart = get_cart(request)
     if request.method == 'POST':
-        # Create the order
         order = Order(
             customer_name=request.POST['name'],
             customer_email=request.POST['email'],
@@ -51,7 +48,6 @@ def checkout(request):
         )
         order.save()
 
-        # Create OrderItems from CartItems
         for item in cart.items.all():
             OrderItem.objects.create(
                 order=order,
@@ -61,13 +57,9 @@ def checkout(request):
                 price=item.shirt.price,
             )
 
-        # Clear the cart after transferring items
-        cart.items.all().delete()
-
-        # Send the order confirmation email
+        # Send the order confirmation email but keep cart until payment
         send_order_confirmation_email(order)
 
-        # Redirect to payment page with order id
         return redirect('checkout:payment', order_id=order.id)
 
     return render(request, 'checkout/checkout.html', {'cart': cart})
@@ -84,19 +76,17 @@ def payment(request, order_id):
 def order_confirmation(request, order_id):
     try:
         order = get_object_or_404(Order, id=order_id)
-        
+
         if request.method == 'POST':
             data = json.loads(request.body)
             payment_method_id = data.get('payment_method_id')
             payment_intent_id = data.get('payment_intent_id')
 
-            # Ensure amount is in cents for Stripe
             amount = int(order.total_price * 100)
 
             if payment_method_id:
-                # Create PaymentIntent
                 intent = stripe.PaymentIntent.create(
-                    amount=amount,  # Stripe amount in cents
+                    amount=amount,
                     currency='usd',
                     payment_method=payment_method_id,
                     confirmation_method='manual',
@@ -104,7 +94,6 @@ def order_confirmation(request, order_id):
                     return_url=request.build_absolute_uri(reverse('checkout:order_confirmation', args=[order_id]))
                 )
             elif payment_intent_id:
-                # Confirm existing PaymentIntent
                 intent = stripe.PaymentIntent.confirm(payment_intent_id)
 
             return handle_payment_intent(intent, order)
@@ -126,6 +115,11 @@ def handle_payment_intent(intent, order):
         order.payment_status = 'paid'
         order.stripe_charge_id = intent.id
         order.save()
+
+        # Clear the cart only after successful payment
+        cart = get_cart_from_order(order)
+        cart.items.all().delete()
+
         return JsonResponse({
             'success_url': reverse('checkout:order_confirmation', args=[order.id])
         })
@@ -133,6 +127,12 @@ def handle_payment_intent(intent, order):
         return JsonResponse({
             'error': {'message': 'Invalid PaymentIntent status'}
         })
+
+# Retrieve the cart linked to an order or user
+def get_cart_from_order(order):
+    if order.customer_email:
+        return Cart.objects.filter(user__email=order.customer_email).first()
+    return Cart.objects.filter(session_key=order.session_key).first()
 
 @login_required
 def order_history(request):
