@@ -23,12 +23,12 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['console'],
-            'level': 'ERROR',  # Capture errors from Django
+            'level': 'ERROR',
             'propagate': True,
         },
         'django.request': {
             'handlers': ['console'],
-            'level': 'ERROR',  # Log 500 errors
+            'level': 'ERROR',
             'propagate': False,
         },
     },

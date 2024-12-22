@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Page Not Found - My Soccer Shirts{% endblock %}
+
+{% block content %}
+<div class="container text-center mt-5 mb-5">
+    <h1 class="display-1 fw-bold">404</h1>
+    <p class="lead">Oops! The page you are looking for does not exist.</p>
+    <p>It might have been removed, had its name changed, or is temporarily unavailable.</p>
+    <a href="{% url 'home:index' %}" class="btn btn-primary mt-3">Return to Homepage</a>
+</div>
+{% endblock %}
