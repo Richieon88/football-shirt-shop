@@ -99,6 +99,23 @@ footer .bi {
     padding: 0.75rem 2rem;
 }
 
+/* Register Button - Hero Section */
+.hero-section .btn-register {
+    background-color: #28a745;  /* Green for Register */
+    color: white;
+    padding: 0.75rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-transform: none;
+    font-weight: 600;
+}
+
+.hero-section .btn-register:hover {
+    background-color: #218838;
+    transform: translateY(-3px);
+}
+
 /* Newsletter Section */
 .newsletter {
     background: linear-gradient(135deg, #1e3c72, #2a5298);
@@ -172,7 +189,7 @@ section h2, section h1 {
     font-weight: bold;
 }
 
-/* Sticky Footer (New Addition) */
+/* Sticky Footer */
 html, body {
     height: 100%;
     margin: 0;
@@ -191,7 +208,7 @@ main {
 }
 
 main > section:first-of-type {
-    margin-top: -1rem;  /* Adjust to eliminate any gap */
+    margin-top: -1rem;
     padding-top: 0;
 }
 

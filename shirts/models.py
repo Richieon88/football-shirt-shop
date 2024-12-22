@@ -1,5 +1,6 @@
 from django.db import models
 from cloudinary.models import CloudinaryField  # Import CloudinaryField
+from django.urls import reverse  # Import reverse for URL resolution
 
 class Shirt(models.Model):
     home_or_away_choices = [
@@ -18,9 +19,14 @@ class Shirt(models.Model):
     image = CloudinaryField('image')
     stock = models.PositiveIntegerField(default=0)
     featured = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.name} ({self.team} - {self.season} - {self.home_or_away})"
+
+    def get_absolute_url(self):
+        return reverse('shirts:shirt_detail', args=[str(self.pk)])
 
 class Size(models.Model):
     size_choices = [

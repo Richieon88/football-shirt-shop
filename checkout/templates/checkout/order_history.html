@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %}My Order History{% endblock %}
+{% block title %}My Order History - My Soccer Shirts{% endblock %}
+
+{% block extra_meta %}
+<meta name="description" content="View your order history on My Soccer Shirts. Track past purchases, check order statuses, and review your soccer gear.">
+<meta name="keywords" content="Order History, Track Orders, Soccer Shirts Purchase History, Football Gear Orders, My Soccer Shirts Account">
+<meta name="robots" content="noindex, follow">
+{% endblock %}
 
 {% block content %}
 <div class="container my-5">
@@ -24,25 +30,4 @@
                         <td>{{ order.id }}</td>
                         <td>{{ order.created_at|date:"F d, Y" }}</td>
                         <td>${{ order.total_price }}</td>
-                        <td>
-                            <span class="badge {% if order.payment_status == 'paid' %} bg-success {% else %} bg-warning {% endif %}">
-                                {{ order.payment_status|title }}
-                            </span>
-                        </td>
-                        <td>
-                            <a href="{% url 'checkout:order_confirmation' order.id %}" class="btn btn-outline-primary btn-sm">
-                                View Details
-                            </a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    {% else %}
-        <div class="alert alert-info mt-4">
-            <p>You have no past orders. <a href="{% url 'shirts:shirt_list' %}" class="alert-link">Start Shopping!</a></p>
-        </div>
-    {% endif %}
-</div>
-{% endblock %}
+              

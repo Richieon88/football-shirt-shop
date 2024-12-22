@@ -3,6 +3,12 @@
 
 {% block title %}Shirts - My Soccer Shirts{% endblock %}
 
+{% block head %}
+    <meta name="description" content="Explore a wide range of soccer shirts from top teams and seasons. Filter by team and season to find your perfect match.">
+    <meta name="keywords" content="soccer shirts, football jerseys, team shirts, sportswear, {{ teams|join:', ' }}, {{ seasons|join:', ' }}">
+    <meta name="author" content="My Soccer Shirts">
+{% endblock %}
+
 {% block content %}
 <div class="container py-5">
     <div class="text-center mb-5">

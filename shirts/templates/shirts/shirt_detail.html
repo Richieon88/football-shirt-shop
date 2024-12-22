@@ -3,8 +3,13 @@
 
 {% block title %}{{ shirt.name }}{% endblock %}
 
+{% block head %}
+<meta name="description" content="{{ shirt.description|truncatewords:20 }}">
+<meta name="keywords" content="{{ shirt.team }}, {{ shirt.season }}, soccer shirts, football shirts, {{ shirt.name }}">
+{% endblock %}
+
 {% block content %}
-<div class="container mt-5 mb-5">  <!-- Add mb-5 to push footer down -->
+<div class="container mt-5 mb-5">
     <div class="row">
         <div class="col-md-6">
             <img src="{% cloudinary_url shirt.image %}" alt="{{ shirt.name }}" class="img-fluid rounded shadow-sm">

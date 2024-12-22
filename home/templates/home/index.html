@@ -3,18 +3,36 @@
 
 {% block title %}Home - My Soccer Shirts{% endblock %}
 
+{% block head %}
+    <meta name="description" content="Get the latest football shirts from your favorite teams. Sign up for exclusive offers, early access, and new product launches.">
+    <meta name="keywords" content="soccer shirts, football jerseys, team kits, football merchandise, buy soccer shirts online, premier league shirts">
+    <meta name="author" content="My Soccer Shirts">
+{% endblock %}
+
 {% block content %}
 <!-- Hero Section -->
-<section class="hero-section py-5">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-8 mx-auto">
-                <h1 class="display-4 fw-bold mb-3">Discover Your Team's Colors</h1>
-                <p class="lead mb-4">Explore the latest or greatest soccer shirts for your favorite teams</p>
-                <a href="{% url 'shirts:shirt_list' %}" class="btn btn-primary btn-lg me-2">Shop Now</a>
-                <a href="{% url 'shirts:shirt_list' %}" class="btn btn-outline-secondary btn-lg">Explore Teams</a>
-            </div>
-        </div>
+<section class="hero-section d-flex flex-column align-items-center justify-content-center">
+    <h1 class="mb-3">Get the Latest Football Shirts</h1>
+    <p class="mb-4">Shop your favorite team's shirt now or sign up for exclusive offers and updates.</p>
+    
+    <div>
+        <a href="{% url 'shirts:shirt_list' %}" class="btn btn-primary btn-lg me-3">Shop Now</a>
+        
+        {% if not request.user.is_authenticated %}
+            <a href="{% url 'account_signup' %}" class="btn btn-register">Register Now</a>
+        {% else %}
+            <a href="{% url 'home:profile' %}" class="btn btn-outline-light btn-lg">View Profile</a>
+        {% endif %}
+    </div>
+
+    <div class="mt-4">
+        {% if not request.user.is_authenticated %}
+            <p class="lead">
+                Why register? Get access to order tracking, exclusive member-only discounts, and early access to new shirt launches.
+            </p>
+        {% else %}
+            <p class="lead">Welcome back, {{ request.user.username }}!</p>
+        {% endif %}
     </div>
 </section>
 
