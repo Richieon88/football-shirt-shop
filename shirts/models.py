@@ -1,6 +1,7 @@
 from django.db import models
-from cloudinary.models import CloudinaryField  # Import CloudinaryField
-from django.urls import reverse  # Import reverse for URL resolution
+from cloudinary.models import CloudinaryField
+from django.urls import reverse
+from django.contrib.auth.models import User
 
 class Shirt(models.Model):
     home_or_away_choices = [
@@ -47,3 +48,16 @@ class ShirtSize(models.Model):
 
     def __str__(self):
         return f"{self.shirt.name} - {self.size.size}"
+
+class Review(models.Model):
+    shirt = models.ForeignKey('Shirt', on_delete=models.CASCADE, related_name='reviews')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    rating = models.PositiveSmallIntegerField(choices=[(i, i) for i in range(1, 6)])
+    comment = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('shirt', 'user')
+
+    def __str__(self):
+        return f"{self.user.username} - {self.shirt.name} ({self.rating}/5)"

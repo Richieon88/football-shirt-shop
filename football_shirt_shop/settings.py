@@ -61,7 +61,6 @@ CSRF_TRUSTED_ORIGINS = [
     "https://football-shirt-shop.herokuapp.com",
 ]
 
-# Application definition
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -132,7 +131,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
-DEFAULT_FROM_EMAIL = "My Soccer Shirts <EMAIL_HOST_USER>"
+DEFAULT_FROM_EMAIL = f"My Soccer Shirts <{EMAIL_HOST_USER}>"
 
 
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
@@ -159,7 +158,7 @@ if os.getenv('HEROKU') is None:
 else:
     DATABASES = {
     'default': dj_database_url.config(
-        conn_max_age=60,
+        conn_max_age=600,
         ssl_require=True
     )
 }
@@ -207,11 +206,11 @@ STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
 
 # Security settings for production
 if os.getenv('HEROKU') is None:
-    SECURE_SSL_REDIRECT = False  # Temporarily disabled for debugging
+    SECURE_SSL_REDIRECT = False
     SESSION_COOKIE_SECURE = False
     CSRF_COOKIE_SECURE = False
 else:
-    SECURE_SSL_REDIRECT = False  # Temporarily disabled for debugging
+    SECURE_SSL_REDIRECT = False
     SESSION_COOKIE_SECURE = False
     CSRF_COOKIE_SECURE = False
 
