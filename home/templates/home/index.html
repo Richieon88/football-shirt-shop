@@ -47,7 +47,7 @@
             {% for shirt in featured_shirts %}
             <div class="col-md-4">
                 <div class="card shadow-sm mb-4">
-                    <img src="{{ shirt.image.url }}" class="card-img-top" alt="{{ shirt.name }}">
+                    <img src="{% cloudinary_url shirt.image secure=True %}" class="card-img-top" alt="{{ shirt.name }}">
                     <div class="card-body text-center">
                         <h5 class="card-title">{{ shirt.name }}</h5>
                         <p class="card-text text-muted">${{ shirt.price }}</p>

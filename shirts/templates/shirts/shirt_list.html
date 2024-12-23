@@ -47,7 +47,7 @@
         {% for shirt in shirts %}
         <div class="col-md-4">
             <div class="card mb-4 shadow-sm h-100">
-                <img class="card-img-top" src="{% cloudinary_url shirt.image %}" alt="{{ shirt.name }}">
+                <img class="card-img-top" src="{% cloudinary_url shirt.image secure=True %}" alt="{{ shirt.name }}">
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">{{ shirt.name }}</h5>
                     <p class="card-text flex-grow-1">{{ shirt.description|truncatewords:20 }}</p>
