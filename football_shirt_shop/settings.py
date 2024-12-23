@@ -205,7 +205,10 @@ STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
 
 # Security settings for production
-if 'HEROKU' in os.environ:
+IS_HEROKU = 'HEROKU' in os.environ or 'DATABASE_URL' in os.environ
+IS_LOCAL = os.getenv('GITPOD_WORKSPACE_URL') or os.getenv('LOCAL_DEV')
+
+if IS_HEROKU:
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
@@ -213,6 +216,9 @@ else:
     SECURE_SSL_REDIRECT = False
     SESSION_COOKIE_SECURE = False
     CSRF_COOKIE_SECURE = False
+
+# Ensure this doesn't interfere with local dev servers like Gitpod or localhost
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https') if IS_HEROKU else None
 
 SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = 'DENY'
