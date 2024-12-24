@@ -7,17 +7,22 @@ from home.sitemaps import StaticViewSitemap, ShirtSitemap
 from home.views import robots_txt
 
 sitemaps = {
-    'static': StaticViewSitemap,
-    'shirts': ShirtSitemap,
+    "static": StaticViewSitemap,
+    "shirts": ShirtSitemap,
 }
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('accounts/', include('allauth.urls')),
-    path('', include('home.urls', namespace='home')),
-    path('shirts/', include('shirts.urls')),
-    path('cart/', include('cart.urls')),
-    path('checkout/', include('checkout.urls')),
-    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    path("accounts/", include("allauth.urls")),
+    path("", include("home.urls", namespace="home")),
+    path("shirts/", include("shirts.urls")),
+    path("cart/", include("cart.urls")),
+    path("checkout/", include("checkout.urls")),
+    path(
+        "sitemap.xml",
+        sitemap,
+        {"sitemaps": sitemaps},
+        name="django.contrib.sitemaps.views.sitemap",
+    ),
     path("robots.txt", robots_txt),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

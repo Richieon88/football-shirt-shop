@@ -9,30 +9,58 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('shirts', '0004_size_remove_shirt_type_shirtsize'),
+        ("shirts", "0004_size_remove_shirt_type_shirtsize"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Order',
+            name="Order",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('customer_name', models.CharField(max_length=100)),
-                ('customer_email', models.EmailField(max_length=254)),
-                ('shipping_address', models.TextField()),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('status', models.CharField(default='Pending', max_length=20)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("customer_name", models.CharField(max_length=100)),
+                ("customer_email", models.EmailField(max_length=254)),
+                ("shipping_address", models.TextField()),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("status", models.CharField(default="Pending", max_length=20)),
             ],
         ),
         migrations.CreateModel(
-            name='OrderItem',
+            name="OrderItem",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('size', models.CharField(max_length=2)),
-                ('quantity', models.PositiveIntegerField()),
-                ('price', models.DecimalField(decimal_places=2, max_digits=6)),
-                ('order', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='items', to='checkout.order')),
-                ('shirt', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='shirts.shirt')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("size", models.CharField(max_length=2)),
+                ("quantity", models.PositiveIntegerField()),
+                ("price", models.DecimalField(decimal_places=2, max_digits=6)),
+                (
+                    "order",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="items",
+                        to="checkout.order",
+                    ),
+                ),
+                (
+                    "shirt",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="shirts.shirt"
+                    ),
+                ),
             ],
         ),
     ]

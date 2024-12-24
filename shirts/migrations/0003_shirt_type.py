@@ -6,14 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('shirts', '0002_shirt_sku'),
+        ("shirts", "0002_shirt_sku"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='shirt',
-            name='type',
-            field=models.CharField(choices=[('Home', 'Home'), ('Away', 'Away'), ('Third', 'Third')], default='home', max_length=5),
+            model_name="shirt",
+            name="type",
+            field=models.CharField(
+                choices=[("Home", "Home"), ("Away", "Away"), ("Third", "Third")],
+                default="home",
+                max_length=5,
+            ),
             preserve_default=False,
         ),
     ]

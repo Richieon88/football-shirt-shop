@@ -1,7 +1,7 @@
 from .models import Cart
 
+
 def cart_context(request):
-    
     """
     Adds cart information to the context to be available globally.
     """
@@ -13,9 +13,6 @@ def cart_context(request):
             request.session.save()
             session_key = request.session.session_key
         cart, created = Cart.objects.get_or_create(session_key=session_key)
-    
+
     cart_items_count = sum(item.quantity for item in cart.items.all())
-    return {
-        'cart_items_count': cart_items_count,
-        'cart': cart
-    }
+    return {"cart_items_count": cart_items_count, "cart": cart}

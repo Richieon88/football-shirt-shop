@@ -7,20 +7,27 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='NewsletterSubscriber',
+            name="NewsletterSubscriber",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('email', models.EmailField(max_length=254, unique=True)),
-                ('subscribed_at', models.DateTimeField(auto_now_add=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("email", models.EmailField(max_length=254, unique=True)),
+                ("subscribed_at", models.DateTimeField(auto_now_add=True)),
             ],
             options={
-                'verbose_name': 'Newsletter Subscriber',
-                'verbose_name_plural': 'Newsletter Subscribers',
+                "verbose_name": "Newsletter Subscriber",
+                "verbose_name_plural": "Newsletter Subscribers",
             },
         ),
     ]

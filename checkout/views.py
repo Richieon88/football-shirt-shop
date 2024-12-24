@@ -15,6 +15,7 @@ import logging
 logger = logging.getLogger(__name__)
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
+
 # Retrieve or create a cart for the user
 def get_cart(request):
     if request.user.is_authenticated:
@@ -27,24 +28,30 @@ def get_cart(request):
         cart, created = Cart.objects.get_or_create(session_key=session_key)
     return cart
 
+
 # Send order confirmation email
 def send_order_confirmation_email(order):
     subject = "Order Confirmation - My Soccer Shirts"
-    html_message = render_to_string('checkout/order_confirmation_email.html', {'order': order})
+    html_message = render_to_string(
+        "checkout/order_confirmation_email.html", {"order": order}
+    )
     plain_message = strip_tags(html_message)
     from_email = settings.DEFAULT_FROM_EMAIL
     recipient_list = [order.customer_email]
 
-    send_mail(subject, plain_message, from_email, recipient_list, html_message=html_message)
+    send_mail(
+        subject, plain_message, from_email, recipient_list, html_message=html_message
+    )
+
 
 # Checkout view to handle order creation and redirection to payment
 def checkout(request):
     cart = get_cart(request)
-    if request.method == 'POST':
+    if request.method == "POST":
         order = Order(
-            customer_name=request.POST['name'],
-            customer_email=request.POST['email'],
-            shipping_address=request.POST['address'],
+            customer_name=request.POST["name"],
+            customer_email=request.POST["email"],
+            shipping_address=request.POST["address"],
         )
         order.save()
 
@@ -56,41 +63,46 @@ def checkout(request):
                 quantity=item.quantity,
                 price=item.shirt.price,
             )
-            
+
         send_order_confirmation_email(order)
 
-        return redirect('checkout:payment', order_id=order.id)
+        return redirect("checkout:payment", order_id=order.id)
 
-    return render(request, 'checkout/checkout.html', {'cart': cart})
+    return render(request, "checkout/checkout.html", {"cart": cart})
+
 
 # Payment view to render payment page and handle Stripe public key
 def payment(request, order_id):
     order = get_object_or_404(Order, id=order_id)
-    return render(request, 'checkout/payment.html', {
-        'order': order,
-        'stripe_public_key': settings.STRIPE_PUBLIC_KEY
-    })
+    return render(
+        request,
+        "checkout/payment.html",
+        {"order": order, "stripe_public_key": settings.STRIPE_PUBLIC_KEY},
+    )
+
 
 # Order confirmation view to handle Stripe PaymentIntent and confirmation response
 def order_confirmation(request, order_id):
     try:
         order = get_object_or_404(Order, id=order_id)
 
-        if request.method == 'POST':
+        if request.method == "POST":
             data = json.loads(request.body)
-            payment_method_id = data.get('payment_method_id')
-            payment_intent_id = data.get('payment_intent_id')
+            payment_method_id = data.get("payment_method_id")
+            payment_intent_id = data.get("payment_intent_id")
 
             amount = int(order.total_price * 100)
 
             if payment_method_id:
                 intent = stripe.PaymentIntent.create(
                     amount=amount,
-                    currency='usd',
+                    currency="usd",
                     payment_method=payment_method_id,
-                    confirmation_method='manual',
+                    confirmation_method="manual",
                     confirm=True,
-                    return_url=request.build_absolute_uri(reverse('checkout:order_confirmation', args=[order_id]))
+                    return_url=request.build_absolute_uri(
+                        reverse("checkout:order_confirmation", args=[order_id])
+                    ),
                 )
             elif payment_intent_id:
                 intent = stripe.PaymentIntent.confirm(payment_intent_id)
@@ -99,19 +111,28 @@ def order_confirmation(request, order_id):
 
     except Exception as e:
         logger.error(f"Error in order_confirmation: {e}")
-        return JsonResponse({'error': 'An unexpected error occurred. Please try again later.'}, status=500)
+        return JsonResponse(
+            {"error": "An unexpected error occurred. Please try again later."},
+            status=500,
+        )
 
-    return render(request, 'checkout/order_confirmation.html', {'order': order})
+    return render(request, "checkout/order_confirmation.html", {"order": order})
+
 
 # Handle PaymentIntent responses and actions
 def handle_payment_intent(intent, order):
-    if intent.status == 'requires_action' and intent.next_action.type == 'use_stripe_sdk':
-        return JsonResponse({
-            'requires_action': True,
-            'payment_intent_client_secret': intent.client_secret
-        })
-    elif intent.status == 'succeeded':
-        order.payment_status = 'paid'
+    if (
+        intent.status == "requires_action"
+        and intent.next_action.type == "use_stripe_sdk"
+    ):
+        return JsonResponse(
+            {
+                "requires_action": True,
+                "payment_intent_client_secret": intent.client_secret,
+            }
+        )
+    elif intent.status == "succeeded":
+        order.payment_status = "paid"
         order.stripe_charge_id = intent.id
         order.save()
 
@@ -119,13 +140,12 @@ def handle_payment_intent(intent, order):
         cart = get_cart_from_order(order)
         cart.items.all().delete()
 
-        return JsonResponse({
-            'success_url': reverse('checkout:order_confirmation', args=[order.id])
-        })
+        return JsonResponse(
+            {"success_url": reverse("checkout:order_confirmation", args=[order.id])}
+        )
     else:
-        return JsonResponse({
-            'error': {'message': 'Invalid PaymentIntent status'}
-        })
+        return JsonResponse({"error": {"message": "Invalid PaymentIntent status"}})
+
 
 # Retrieve the cart linked to an order or user
 def get_cart_from_order(order):
@@ -133,7 +153,10 @@ def get_cart_from_order(order):
         return Cart.objects.filter(user__email=order.customer_email).first()
     return Cart.objects.filter(session_key=order.session_key).first()
 
+
 @login_required
 def order_history(request):
-    orders = Order.objects.filter(customer_email=request.user.email).order_by('-created_at')
-    return render(request, 'checkout/order_history.html', {'orders': orders})
+    orders = Order.objects.filter(customer_email=request.user.email).order_by(
+        "-created_at"
+    )
+    return render(request, "checkout/order_history.html", {"orders": orders})

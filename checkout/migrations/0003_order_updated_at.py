@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('checkout', '0002_remove_order_status_order_payment_status_and_more'),
+        ("checkout", "0002_remove_order_status_order_payment_status_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='order',
-            name='updated_at',
+            model_name="order",
+            name="updated_at",
             field=models.DateTimeField(auto_now=True),
         ),
     ]

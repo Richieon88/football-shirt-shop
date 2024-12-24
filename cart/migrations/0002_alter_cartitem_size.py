@@ -6,13 +6,21 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cart', '0001_initial'),
+        ("cart", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='cartitem',
-            name='size',
-            field=models.CharField(choices=[('S', 'Small'), ('M', 'Medium'), ('L', 'Large'), ('XL', 'Extra Large')], max_length=2),
+            model_name="cartitem",
+            name="size",
+            field=models.CharField(
+                choices=[
+                    ("S", "Small"),
+                    ("M", "Medium"),
+                    ("L", "Large"),
+                    ("XL", "Extra Large"),
+                ],
+                max_length=2,
+            ),
         ),
     ]
