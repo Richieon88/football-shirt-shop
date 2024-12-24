@@ -176,28 +176,36 @@ The projected growth in revenue and profitability highlights the platform's pote
 
 ### Social Media  
 
-**My Soccer Shirts** maintains an active presence on popular social media platforms, including Facebook and Instagram. These platforms serve as primary channels for engaging with the football community, promoting new product lines, and highlighting user-generated content.  
+**My Soccer Shirts** actively engages with football enthusiasts across key social media platforms, including **Facebook** and **Instagram**. These platforms are essential for building community, showcasing products, and driving traffic to the site.  
 
-- **Facebook** is used to share product launches, limited-time offers, and interact with customers through comments and messaging.  
-- **Instagram** focuses on visual content, showcasing high-resolution images of the latest football shirts, customization options, and behind-the-scenes insights into the production process.  
+- **Facebook** – We use Facebook to share product launches, exclusive offers, and interact with customers directly through comments and messages. It's a hub for football news, user-generated content, and promotions.  
 
-Social media engagement fosters brand loyalty and helps drive traffic to the website, increasing overall sales and awareness.  
+  **Facebook Page Overview:**  
+  ![Facebook Page](docs/facebook_page.png)  
+
+  **Facebook About Section:**  
+  ![Facebook About](docs/facebook_about.png)  
+
+- **Instagram** – Instagram showcases high-quality images of our latest football shirts, behind-the-scenes insights, and customization options. Visual content highlights new arrivals and connects us with fans around the world.  
+
+Social media not only enhances brand visibility but also builds a sense of community and drives traffic to the website.  
+
+---
 
 ### Mailing List  
 
-To further engage with customers, **My Soccer Shirts** offers a mailing list managed through Mailchimp.  
+**My Soccer Shirts** offers a simple email subscription service to keep customers informed about the latest products, exclusive deals, and special promotions.  
 
-- Users can subscribe via the website, gaining access to exclusive discounts, early product launches, and updates on the latest collections.  
-- Email campaigns are segmented based on user preferences and past purchases, ensuring targeted and relevant communication.  
+- **Why Subscribe?**  
+  Subscribers receive early notifications about new releases, limited-time discounts, and seasonal sales.  
 
-This direct line to customers increases retention and provides an opportunity to announce seasonal sales, new team collections, and limited edition releases.  
+- **Direct Updates**  
+  Once subscribed, users receive emails directly in their inbox with news about the latest collections and promotions.  
 
-<details><summary>Example Email Campaign</summary>  
-
-![Email Campaign](link-to-email-campaign-image)  
-</details>  
+This direct communication strengthens the relationship with our customers, encouraging repeat visits and purchases.  
 
 ---
+
 
 ##### Back to [top](#table-of-contents)  
 
@@ -289,26 +297,15 @@ To ensure inclusivity, the site adheres to accessibility guidelines by:
 
 | **ID** | **As a...**              | **I want to...**                                            | **So that I can...**                                      |
 |--------|--------------------------|-------------------------------------------------------------|-----------------------------------------------------------|
-| 1      | Shopper                  | Browse available football shirts                            | Find a shirt for my favorite team                         |
-| 2      | Shopper                  | Filter shirts by team and size                              | Quickly locate what fits and is in stock                  |
-| 3      | Shopper                  | View product details                                         | Learn more about the shirt's material, season, and price  |
-| 4      | Shopper                  | Add a shirt to my shopping cart                             | Purchase multiple items at once                           |
-| 5      | Shopper                  | Adjust item quantity in the cart                            | Buy the correct number of shirts                          |
-| 6      | Shopper                  | Remove items from my cart                                    | Manage my purchases before checkout                       |
-| 7      | Shopper                  | Checkout securely using my credit card                      | Complete my purchase safely                                |
-| 8      | Shopper                  | Receive an order confirmation email                          | Have proof of my purchase                                 |
-| 9      | Shopper                  | Track my order status                                        | Know when to expect delivery                              |
-| 10     | Shopper                  | Leave a review for a shirt                                   | Share my experience with other customers                  |
-| 11     | Shopper                  | Edit or delete my review                                     | Update my feedback if necessary                           |
-| 12     | Unregistered User        | Register for an account                                      | Save my preferences and make faster purchases in the future|
-| 13     | Registered User          | Log in and manage my account                                 | Update my address or payment information                  |
-| 14     | Registered User          | View past orders                                             | Keep track of previous purchases                          |
-| 15     | Store Owner              | Add new shirts to the catalog                                | Keep inventory up-to-date                                 |
-| 16     | Store Owner              | Edit product information                                     | Correct errors or update descriptions                     |
-| 17     | Store Owner              | Remove discontinued products                                 | Ensure the catalog only shows available shirts            |
-| 18     | Store Owner              | View customer reviews                                        | Understand customer feedback and improve products          |
-| 19     | Admin                   | Manage user accounts                                         | Handle customer service requests and security issues       |
-| 20     | Admin                   | View order details                                           | Process refunds or returns                                |
+| 1      | Visitor                  | Browse the catalog of soccer shirts                         | See all available products                                |
+| 2      | Visitor                  | Filter through the catalog of retro soccer shirts           | View specific products I am interested in                 |
+| 3      | Visitor                  | View product details                                         | See more information about the shirt                      |
+| 4      | User                     | Proceed to checkout                                          | Purchase the items in my cart                             |
+| 5      | User                     | View my profile                                              | See my account details and order history                  |
+| 6      | User                     | Enter shipping and payment information                       | Complete my purchase                                      |
+| 7      | Visitor                  | Create an account                                            | Access member-only features and make purchases            |
+| 8      | Admin                    | Manage orders                                                | Track and update order statuses                           |
+| 9      | Admin                    | Add and edit products                                        | Expand inventory and update product listings              |
 
 ---
 
