@@ -1,5 +1,9 @@
 # My Soccer Shirts  
 
+![Responsive Mockup](media/responsive-mockup.png)  
+
+**Live Site:** [My Soccer Shirts Live Site](https://www.mysoccershirts.com)  
+
 **Developer:** Richard O'Neill  
 
 ## Table of Contents  
@@ -22,7 +26,7 @@
 
 ---
 
-## Executive Summary  
+## Executive Summary
 
 My Soccer Shirts is an e-commerce platform that offers high-quality, authentic football shirts for fans and collectors. The platform aims to provide an easy and enjoyable shopping experience, featuring products from top football clubs and national teams.  
 
