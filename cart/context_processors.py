@@ -1,6 +1,7 @@
 from .models import Cart
 
 def cart_context(request):
+    
     """
     Adds cart information to the context to be available globally.
     """

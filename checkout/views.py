@@ -56,8 +56,7 @@ def checkout(request):
                 quantity=item.quantity,
                 price=item.shirt.price,
             )
-
-        # Send the order confirmation email but keep cart until payment
+            
         send_order_confirmation_email(order)
 
         return redirect('checkout:payment', order_id=order.id)

@@ -4,7 +4,7 @@
 {% block title %}{{ shirt.name }}{% endblock %}
 
 {% block content %}
-<div class="container mt-5 pb-5"> <!-- Added pb-5 for padding-bottom -->
+<div class="container mt-5 pb-5">
     <div class="row">
         <div class="col-md-6">
             <img src="{% cloudinary_url shirt.image secure=True %}" alt="{{ shirt.name }}" class="img-fluid rounded shadow-sm">
@@ -17,7 +17,8 @@
             <form action="{% url 'cart:add_to_cart' shirt.id %}" method="post">
                 {% csrf_token %}
                 <label for="size">Size:</label>
-                <select name="size" required>
+                <select name="size" id="size" required>
+                    <option value="" disabled selected>Select Size</option>
                     <option value="S">Small</option>
                     <option value="M">Medium</option>
                     <option value="L">Large</option>
@@ -70,7 +71,8 @@
                 <form method="post" action="{% url 'shirts:edit_review' pk=shirt.id review_id=user_review.id %}">
                     {% csrf_token %}
                     <textarea class="form-control mb-3" name="comment" required>{{ user_review.comment }}</textarea>
-                    <select name="rating" class="form-select mb-3" required>
+                    <label for="rating">Rating:</label>
+                    <select name="rating" id="rating" class="form-select mb-3" required>
                         <option value="5" {% if user_review.rating == 5 %}selected{% endif %}>5 - Excellent</option>
                         <option value="4" {% if user_review.rating == 4 %}selected{% endif %}>4 - Good</option>
                         <option value="3" {% if user_review.rating == 3 %}selected{% endif %}>3 - Average</option>
@@ -84,7 +86,8 @@
                 <form method="post" action="{% url 'shirts:add_review' shirt.id %}">
                     {% csrf_token %}
                     <textarea class="form-control mb-3" name="comment" placeholder="Write your review here" required></textarea>
-                    <select name="rating" class="form-select mb-3" required>
+                    <label for="new_rating">Rating:</label>
+                    <select name="rating" id="new_rating" class="form-select mb-3" required>
                         <option value="5">5 - Excellent</option>
                         <option value="4">4 - Good</option>
                         <option value="3">3 - Average</option>

@@ -27,7 +27,6 @@ def newsletter_signup(request):
             email = form.cleaned_data['email']
             if not NewsletterSubscriber.objects.filter(email=email).exists():
                 form.save()
-                # Send welcome email
                 send_mail(
                     'Welcome to Our Newsletter!',
                     'Thank you for subscribing to our newsletter. Stay tuned for updates and offers!',
