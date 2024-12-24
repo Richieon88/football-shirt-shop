@@ -1,8 +1,8 @@
 # My Soccer Shirts  
 
-![Responsive Mockup](media/responsive-mockup.png)  
+![Responsive Mockup](docs/responsive-mockup.png)  
 
-**Live Site:** [My Soccer Shirts Live Site](https://www.mysoccershirts.com)  
+**Live Site:** [My Soccer Shirts Live Site](https://football-shirt-shop-850c280d3fdf.herokuapp.com/)  
 
 **Developer:** Richard O'Neill  
 
@@ -327,37 +327,25 @@ To ensure inclusivity, the site adheres to accessibility guidelines by:
 
 ## Wireframes  
 
-Wireframes for this project were created using **pen and paper**. This method allowed for rapid sketching and brainstorming of ideas, ensuring that the layout and structure were well thought out before development began.  
+Wireframes for this project were created using **pen and paper**. This method allowed for quick iteration and flexibility during the early design phase. Sketching by hand made it easy to explore multiple layout options, make adjustments on the fly, and visualize the structure of key pages.  
 
-Sketching by hand provided flexibility and allowed for quick adjustments during the planning phase. The final wireframes represent the core pages of the site, ensuring a user-friendly and intuitive experience.  
+The simplicity of pen-and-paper wireframing ensured that design ideas could be tested and refined rapidly, which was particularly beneficial given the project's time constraints. This approach helped prioritize essential elements and user flows, resulting in a streamlined and intuitive site structure.  
 
-**Wireframes Include:**  
-- **Homepage**  
-- **Product Listing Page**  
-- **Product Detail Page**  
-- **Shopping Cart Page**  
-- **Checkout Page**  
-- **Order Confirmation Page**  
-- **User Profile Page**  
-- **Admin Dashboard**  
+**Key Wireframes Represent:**  
+- **Homepage** – Highlights featured products and key calls to action.  
+- **Product Listing Page** – Displays all available shirts with filtering options.  
+- **Product Detail Page** – Focuses on product imagery, descriptions, and purchasing options.  
+- **Shopping Cart Page** – Provides an overview of selected items with the ability to adjust quantities.  
+- **Checkout Page** – Captures shipping and payment details for completing orders.  
+- **Order Confirmation Page** – Summarizes the order after successful checkout.  
+- **User Profile Page** – Enables users to manage personal details and view past orders.  
+- **Admin Dashboard** – Facilitates product and order management for the site owner.  
 
-Photographs of the hand-drawn wireframes have been included below for reference:  
-
-<details><summary>Homepage Wireframe</summary>
-![Homepage Wireframe](path/to/homepage-wireframe.jpg)
-</details>  
-
-<details><summary>Product Page Wireframe</summary>
-![Product Page Wireframe](path/to/product-page-wireframe.jpg)
-</details>  
-
-<details><summary>Checkout Wireframe</summary>
-![Checkout Wireframe](path/to/checkout-wireframe.jpg)
-</details>  
+The wireframing process laid the foundation for a user-friendly and visually appealing final product, ensuring that the core functionality and design elements aligned with both user and business goals.  
 
 ---
 
-##### Back to [top](#table-of-contents)  
+##### Back to [top](#table-of-contents)
 
 ---
 
@@ -365,31 +353,26 @@ Photographs of the hand-drawn wireframes have been included below for reference:
 
 ### Colors  
 
-The color palette was chosen to reflect the energy and passion of football, while ensuring a visually engaging experience for users. The primary colors include:  
+The color palette for **My Soccer Shirts** reflects a professional and sleek design, using modern and subtle colors that highlight content without being overwhelming. The primary colors include:  
 
-- **Primary Color:** Deep Red (#8B0000) – Reflecting the intensity and tradition of football.  
-- **Accent Color:** Golden Yellow (#FFD700) – Representing energy and highlights.  
-- **Background:** Light Gray (#F5F5F5) – Clean, simple, and easy on the eyes for extended browsing.  
-- **Text Color:** Charcoal (#333333) – Ensuring high contrast and readability.  
+- **Accent Color:** Golden Yellow – Used for interactive elements and hover effects to create a striking contrast.  
+- **Background:** Dark Gray and Black – Establishing a sleek and professional feel, especially in the footer and navbar.  
+- **Hero Overlay:** Black Gradient – Ensuring text stands out on the homepage hero image.  
+- **Newsletter Gradient:** Deep Blue Gradient – Reflecting trust and engagement.  
+- **Text Color:** White – Ensuring high contrast for readability across all backgrounds.  
 
-The combination of these colors aims to create a balance between excitement and professionalism, reinforcing the brand identity of the football shirt shop.  
-
-<details><summary>See Color Palette</summary>
-![Color Palette](path/to/color-palette.jpg)
-</details>  
+This combination creates a polished and engaging aesthetic that enhances the overall user experience.  
 
 ---
 
 ### Fonts  
 
-The project utilizes Google Fonts for consistency and readability.  
+To ensure readability and maintain a modern, clean aesthetic, **My Soccer Shirts** uses a combination of Google Fonts:  
 
-- **Primary Font:** Montserrat – Chosen for its bold and modern look, enhancing the visual appeal of headlines and navigation.  
-- **Secondary Font:** Open Sans – Used for body text to ensure readability and a clean, professional appearance.  
+- **Primary Font:** Montserrat – Used for headings and navigation, providing a bold, sleek, and contemporary feel.  
+- **Secondary Font:** Open Sans – Applied to body text for its simplicity and readability, creating a balanced and professional look.  
 
-<details><summary>See Font Example</summary>
-![Font Example](path/to/font-sample.jpg)
-</details>  
+The combination of these fonts helps establish hierarchy and enhances the overall visual experience, making the site both stylish and easy to navigate.
 
 ---
 
@@ -664,37 +647,48 @@ The Football Shirt eCommerce platform includes a range of features that provide 
 
 ## Validation  
 
-Ensuring that the Football Shirt eCommerce site is fully functional, secure, and user-friendly is a top priority. Below is an outline of the validation processes undertaken during development.  
+Ensuring that the Football Shirt eCommerce site is fully functional, secure, and user-friendly was a key priority. The following validation processes were undertaken during development to ensure high-quality code.  
 
----
+---  
 
 ### HTML Validation  
 
 - **W3C Markup Validation** – All HTML files were tested using the [W3C Markup Validation Service](https://validator.w3.org/).  
-- **Outcome** – Any errors identified were corrected, including unclosed tags and missing attributes.  
+- **Outcome** – Errors related to form labels, empty `option` tags, and element nesting were corrected to ensure valid HTML structure.  
 
----
+**Screenshot:**  
+![HTML Validation Screenshot](docs/validation/html-validation.png)  
+
+---  
 
 ### CSS Validation  
 
-- **W3C CSS Validator** – The CSS code was tested using the [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/).  
-- **Outcome** – CSS files passed without errors, ensuring responsive and visually appealing design across all devices.  
+- **W3C CSS Validator** – The CSS code was validated using the [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/).  
+- **Outcome** – No errors were found, confirming that the CSS code meets current web standards and ensures consistent styling across all screen sizes.  
 
----
+**Screenshot:**  
+![CSS Validation Screenshot](docs/validation/css-validation.png)  
+
+---  
 
 ### JavaScript Validation  
 
-- **JSHint** – All JavaScript files were validated using [JSHint](https://jshint.com/).  
-- **Outcome** – Minor warnings about best practices were addressed to ensure clean and maintainable JavaScript code.  
+- **JSHint** – JavaScript files were validated using [JSHint](https://jshint.com/).  
+- **Outcome** – Minor warnings were addressed, such as ensuring undefined variables like `Stripe` were correctly imported, and best practices were applied to improve code clarity.  
 
----
+**Screenshot:**  
+![JavaScript Validation Screenshot](docs/validation/js-validation.png)  
+
+---  
 
 ### Python Validation  
 
-- **PEP8 Compliance** – Python code was validated using the [PEP8 Online Checker](https://pypi.org/project/autopep8/).  
-- **Outcome** – All Python files follow PEP8 conventions, ensuring readable and professional code.  
+- **Flake8** – Python code was linted using [Flake8](https://flake8.pycqa.org/).  
+- **Outcome** – Linting identified and corrected issues such as missing whitespace, line length, and unused imports. The codebase now adheres to **PEP8** standards for readability and consistency.  
 
----
+- **Black Formatter** – The code was also formatted using [Black](https://black.readthedocs.io/), ensuring uniform code style across all Python files. 
+
+---  
 
 ### Accessibility Testing  
 
@@ -757,48 +751,111 @@ Ensuring that the Football Shirt eCommerce site is fully functional, secure, and
 
 ## Testing  
 
-A thorough and structured testing process was conducted to ensure that all features of the Football Shirt eCommerce site function correctly and provide a seamless user experience. This section outlines manual and automated testing, as well as compatibility and performance checks.
+A structured and detailed testing process was conducted to ensure all features of the Football Shirt eCommerce site function correctly and provide a seamless user experience. This section outlines the manual testing process for each aspect of the site.  
 
----
+---  
 
 ### Manual Testing  
 
-- **Process**:  
-  Each feature was tested manually by following the user stories and executing actions as a site visitor, registered user, and admin.  
-  - **Navigation** – Ensured all links direct to the correct pages.  
-  - **Forms** – Registration, login, checkout, and review forms were tested to confirm input validation and error handling.  
-  - **CRUD Operations** – Created, updated, and deleted products, reviews, and cart items to ensure CRUD functionality.  
-  - **Messages** – Verified success/error messages display correctly after actions such as adding/removing products or submitting forms.  
-  - **Checkout** – Simulated full checkout process with test card numbers via Stripe.  
+Each feature was tested manually by following the user stories and executing actions as a site visitor, registered user, and admin. Testing was performed across various devices and browsers to ensure full compatibility and responsiveness.  
 
-- **Outcome** – All critical paths were followed, and errors were corrected where necessary.  
+---  
 
----
+### Features Tested  
 
-### Automated Testing  
+**1. Navigation**  
+- **Tested**:  
+  - All navbar links direct to the appropriate pages.  
+  - Footer links redirect correctly to external social media pages.  
+  - Logo redirects to the homepage.  
+- **Outcome**: Passed. No broken links or incorrect routing.  
 
-- **Unit Testing**  
-  - **Tools**: Django's built-in test framework.  
-  - **Scope**: Models, views, and forms.  
-  - **Outcome**: Automated tests cover the core functionality of the shopping cart, checkout, and order processes.  
+**2. User Authentication**  
+- **Tested**:  
+  - User registration with valid/invalid data.  
+  - Login/logout process for registered users.  
+  - Password reset flow via email.  
+- **Outcome**: Passed. Validation errors display correctly, and users cannot bypass required fields.  
 
-- **Coverage**  
-  - **Coverage Tool**: Coverage.py was used to measure test coverage.  
-  - **Outcome**: Code coverage consistently exceeds 90% for core apps.  
+**3. User Profile**  
+- **Tested**:  
+  - Accessing the profile page as an authenticated user.  
+  - Updating profile information (name, email, address).  
+  - Changing the password from the profile section.  
+- **Outcome**: Passed. Profile updates are reflected immediately, and validation prevents invalid data entry.  
 
----
+**4. Product Catalog**  
+- **Tested**:  
+  - Browsing through the shirt catalog.  
+  - Filtering products by size and team.  
+  - Viewing individual product detail pages.  
+- **Outcome**: Passed. Products load dynamically and display relevant information.  
+
+**5. Add to Cart**  
+- **Tested**:  
+  - Adding products to the cart from the product detail page.  
+  - Adding multiple products and verifying quantities.  
+  - Preventing duplicate cart entries by adjusting quantities instead.  
+- **Outcome**: Passed. The cart accurately reflects product selections.  
+
+**6. Cart Management**  
+- **Tested**:  
+  - Viewing the cart page.  
+  - Updating item quantities directly from the cart.  
+  - Removing items from the cart.  
+- **Outcome**: Passed. Cart updates immediately upon user interaction.  
+
+**7. Checkout**  
+- **Tested**:  
+  - Filling out the checkout form with/without required data.  
+  - Completing a test payment using Stripe.  
+  - Verifying that orders appear in the admin panel after checkout.  
+- **Outcome**: Passed. Form validation prevents incomplete submissions, and Stripe handles payments securely.  
+
+**8. Order Confirmation**  
+- **Tested**:  
+  - Display of order confirmation page post-purchase.  
+  - Email receipt sent to the user upon successful checkout.  
+- **Outcome**: Passed. Email notifications are sent immediately after purchase.  
+
+**9. Reviews**  
+- **Tested**:  
+  - Submitting a product review as a registered user.  
+  - Editing and deleting existing reviews.  
+  - Preventing duplicate reviews on the same product by the same user.  
+- **Outcome**: Passed. Reviews display on the product page instantly.  
+
+**10. Admin Panel**  
+- **Tested**:  
+  - Adding, editing, and deleting products.  
+  - Managing orders (marking as shipped, updating status).  
+  - Managing user reviews (removal of inappropriate content).  
+- **Outcome**: Passed. Admin access controls prevent unauthorized changes.  
+
+**11. Contact Form**  
+- **Tested**:  
+  - Submitting a query via the contact form.  
+  - Validation errors for missing required fields.  
+  - Confirmation message displayed upon successful submission.  
+- **Outcome**: Passed. All messages are delivered to the admin email.  
+
+**12. Responsive Design**  
+- **Tested**:  
+  - Ensuring site responsiveness across mobile, tablet, and desktop devices.  
+  - Checking for layout shifts or broken elements on smaller screens.  
+- **Outcome**: Passed. The site adjusts properly across all tested screen sizes.  
+
+---  
 
 ### Device Testing  
 
-- The site was tested on various devices to ensure responsive design and usability.  
-  - **Mobile Devices** – iPhone 13, Samsung Galaxy S21.  
-  - **Tablets** – iPad Pro, Samsung Tab S7.  
-  - **Laptops** – MacBook Air, Dell XPS.  
-  - **Desktops** – Windows 10 PC, iMac.  
+The site was tested on a variety of devices to ensure a fully responsive experience.  
+- **Mobile Devices**: iPhone 13, Samsung Galaxy S21  
+- **Tablets**: iPad Pro, Samsung Tab S7  
+- **Laptops**: MacBook Air, Dell XPS  
+- **Desktops**: Windows 10 PC, iMac  
 
-- **Outcome** – No significant layout shifts or design issues were encountered.  
-
----
+---  
 
 ### Browser Compatibility  
 
@@ -808,14 +865,12 @@ The site was tested on the following browsers:
 - **Microsoft Edge**  
 - **Safari**  
 
-- **Outcome** – The site displayed consistently across all browsers.  
-
----
+---  
 
 ### Performance Testing  
 
 - **Google Lighthouse**  
-  - **Focus Areas**: Performance, SEO, Accessibility.  
+  - **Focus Areas**: Performance, SEO, Accessibility  
   - **Outcome**:  
     - Performance: 90+  
     - Accessibility: 95+  
@@ -823,9 +878,9 @@ The site was tested on the following browsers:
 
 - **Page Load Time**  
   - Pages load within 2-3 seconds.  
-  - Compressed static files using WhiteNoise for improved performance.  
+  - Static files are compressed using WhiteNoise for faster delivery.  
 
----
+---  
 
 ### Bugs and Fixes  
 
@@ -845,17 +900,16 @@ The site was tested on the following browsers:
 - **Issue** – Users couldn't delete their own reviews.  
 - **Fix** – Implemented review delete functionality tied to user authentication.  
 
----
+---  
 
 ### Outstanding Bugs  
 
 - **None** – All major issues identified during development have been resolved.  
 
----
+---  
 
 ##### Back to [top](#table-of-contents)  
 
----
 
 ## Deployment  
 
